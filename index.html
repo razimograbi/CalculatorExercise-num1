@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Website</title>
+    <style>
+        body{
+            margin: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .calculator-body-wrapper{
+            margin: 20px 100px;
+            border: 2px solid #0068f5;
+            display: inline-block;
+        }
+
+        .calculator-upper-body-wrapper{
+            border-bottom: 2px solid #0068f5;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        #result-display{
+            padding: 1rem;
+        }
+
+        .number-div{
+            cursor: pointer;
+            width: 1rem;
+            height: 1rem;
+            background-color: #0068f5;
+            padding: 1rem;
+            color: #fff;
+            box-shadow: 0 2px 7px rgba(0,0,0,.078);
+            margin: 0.1rem;
+        }
+
+        .operator-div{
+            cursor: pointer;
+            width: 1rem;
+            height: 1rem;
+            background-color: #0068f5;
+            padding: 1rem;
+            color: #fff;
+            box-shadow: 0 2px 7px rgba(0,0,0,.078);
+            margin: 0.1rem;
+        }
+
+        .numbers-body-wrapper{
+            display: flex;
+            flex-direction: column;
+            font-size: large;
+        }
+
+        .calculator-left-side-wrapper{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .row-wrapper{
+            display: flex;
+        }
+
+
+        img{
+            width: 20px;
+            height: 20px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <section class="calculator-intro" style="margin: 20px auto">
+        <div class="header-wrapper">
+            <h1>First Excercise</h1>
+        </div>
+    </section>
+    <main style="margin: 20px auto">
+        <section class="calculator-section">
+            <div class="calculator-body-wrapper">
+                <div class="calculator-left-side-wrapper">
+                    <div class="calculator-upper-body-wrapper">
+                        <div id="result-display"></div>
+                    </div>
+                    <div class="numbers-body-wrapper">
+                        <div class="first-row row-wrapper">
+                            <div class="number-div">7</div>
+                            <div class="number-div">8</div>
+                            <div class="number-div">9</div>
+                            <div class="operator-div"><img src="./Images/deleteImage.png" alt="delete-icon" width="20px" height="20px"></div>
+                            
+                        </div>
+                        <div class="second-row row-wrapper">
+                            <div class="number-div">4</div>
+                            <div class="number-div">5</div>
+                            <div class="number-div">6</div>
+                            <div class="operator-div">C</div>
+                        </div>
+                        
+                        <div class="third-row row-wrapper">
+                            <div class="number-div">1</div>
+                            <div class="number-div">2</div>
+                            <div class="number-div">3</div>
+                            <div class="operator-div">+</div>
+                        </div>
+
+                        <div class="fourth-row row-wrapper">
+                            <div class="number-div">0</div>
+                            <div class="operator-div">÷</div>
+                            <div class="operator-div"> <span>&#215;</span> </div>
+                            <div class="operator-div">-</div>
+                            <div class="operator-div">=</div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        // custom config for the MTW app 
+        const mtwAppConfig = {
+            border: true // app border in the MTW page                    
+        }
+
+        ///////////////////////////////////////////////////////
+        // implement this functions in order to use private API        
+        const sendPrivateApiRequest = async () => {
+            // your code here:
+            // sendRequestToParent({ cat: 'getAssets' })
+        }        
+
+        const acceptPrivateApiResponse = async (data) => {
+            // process received data here:
+            // console.log(data)
+        }
+
+        // use this in order to send on document load
+        document.addEventListener('DOMContentLoaded', () => {
+            // your code here:
+            //sendRequestToParent({ method: 'getAssets' })
+        })
+
+    </script>
+    <script src="https://morethanwallet.com/appstore/index.js"></script>
+</body>
+
+</html>
