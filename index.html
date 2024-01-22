@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator Website</title>
+    <script src="app.js" defer></script>
     <style>
         body{
             margin: 0;
@@ -13,20 +14,29 @@
             flex-direction: column;
         }
 
+        .calculator-section{
+            margin-bottom: 2rem;
+        }
+
         .calculator-body-wrapper{
             margin: 20px 100px;
             border: 2px solid #0068f5;
             display: inline-block;
+            border-radius: 10px;
         }
 
         .calculator-upper-body-wrapper{
             border-bottom: 2px solid #0068f5;
+            border-radius: 10px;
+            background-color: #e4e4e4;
             padding-bottom: 1rem;
             margin-bottom: 1rem;
         }
 
         #result-display{
             padding: 1rem;
+            text-align: right;
+            font-size: large;
         }
 
         .number-div{
@@ -36,8 +46,14 @@
             background-color: #0068f5;
             padding: 1rem;
             color: #fff;
+            text-align: center;
             box-shadow: 0 2px 7px rgba(0,0,0,.078);
             margin: 0.1rem;
+            opacity: 0.95;
+        }
+
+        .number{
+            opacity: 1 !important;
         }
 
         .operator-div{
@@ -49,6 +65,15 @@
             color: #fff;
             box-shadow: 0 2px 7px rgba(0,0,0,.078);
             margin: 0.1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.95;
+        }
+
+        .first-row-item{
+            width: 0.65rem;
+            margin: 0;
         }
 
         .numbers-body-wrapper{
@@ -60,12 +85,17 @@
         .calculator-left-side-wrapper{
             display: flex;
             flex-direction: column;
+            background-color: lightslategrey;
+            border-radius: 10px;
         }
 
         .row-wrapper{
             display: flex;
         }
 
+        .shadow-operation{
+            opacity: 0.3;
+        }
 
         img{
             width: 20px;
@@ -77,46 +107,82 @@
 </head>
 
 <body>
-    <section class="calculator-intro" style="margin: 20px auto">
+    <section class="calculator-intro" style="margin: 10px auto">
         <div class="header-wrapper">
             <h1>First Excercise</h1>
         </div>
     </section>
-    <main style="margin: 20px auto">
+    <main style="margin: 10px auto">
         <section class="calculator-section">
             <div class="calculator-body-wrapper">
                 <div class="calculator-left-side-wrapper">
                     <div class="calculator-upper-body-wrapper">
-                        <div id="result-display"></div>
+                        <div id="result-display">0</div>
                     </div>
                     <div class="numbers-body-wrapper">
-                        <div class="first-row row-wrapper">
-                            <div class="number-div">7</div>
-                            <div class="number-div">8</div>
-                            <div class="number-div">9</div>
-                            <div class="operator-div"><img src="./Images/deleteImage.png" alt="delete-icon" width="20px" height="20px"></div>
-                            
-                        </div>
-                        <div class="second-row row-wrapper">
-                            <div class="number-div">4</div>
-                            <div class="number-div">5</div>
-                            <div class="number-div">6</div>
-                            <div class="operator-div">C</div>
-                        </div>
-                        
-                        <div class="third-row row-wrapper">
-                            <div class="number-div">1</div>
-                            <div class="number-div">2</div>
-                            <div class="number-div">3</div>
-                            <div class="operator-div">+</div>
+
+                        <div class="row-wrapper" style="margin-bottom: 5px;">
+                            <div class="operator-div first-row-item shadow-operation">MC</div>
+                            <div class="operator-div first-row-item shadow-operation">MR</div>
+                            <div class="operator-div first-row-item">M <span style="font-size:small;">+</span></div>
+                            <div class="operator-div first-row-item">M <span style="font-size:medium;">-</span></div>
+                            <div class="operator-div first-row-item">MS</div>
+                            <div class="number-div shadow-operation first-row-item">M<sup style="font-size: x-small;">&#9660;</sup></div>
                         </div>
 
-                        <div class="fourth-row row-wrapper">
-                            <div class="number-div">0</div>
-                            <div class="operator-div">÷</div>
-                            <div class="operator-div"> <span>&#215;</span> </div>
-                            <div class="operator-div">-</div>
-                            <div class="operator-div">=</div>
+                        <div class="row-wrapper">
+                            <div class="number-div operation">2<sup style="font-size: smaller;">nd</sup></div>
+                            <div class="number-div operation" data-customdata="pi">&pi;</div>
+                            <div class="number-div operation" data-customdata="e">e</div>
+                            <div class="operator-div operation" data-customdata="c">C</div>
+                            <div class="operator-div operation" data-customdata="remove"><img src="./Images/deleteImage.png" alt="delete-icon" width="20px" height="20px"></div>
+                        </div>
+
+                        <div class="row-wrapper">
+                            <div class="number-div operation" data-customdata="power2">x<sup style="font-size: smaller;">2</sup></div>
+                            <div class="operator-div operation" data-customdata="one-over">1/x</div>
+                            <div class="operator-div operation" data-customdata="abs">|x|</div>
+                            <div class="operator-div operation" data-customdata="exp">exp</div>
+                            <div class="operator-div operation" data-customdata="mod">mod</div>
+                        </div>
+                        <div class="row-wrapper">
+                            <div class="operator-div operation" data-customdata="sqrt"><span>√x</span></div>
+                            <div class="operator-div operation" data-customdata="arr1">&#40;</div>
+                            <div class="operator-div operation" data-customdata="arr2">&#41;</div>
+                            <div class="operator-div operation" data-customdata="factorial">n!</div>
+                            <div class="operator-div operation" data-customdata="divide">÷</div>
+                        </div>
+                        
+                        <div class="row-wrapper">
+                            <div class="number-div operation" data-customdata="power-n">x<sup style="font-size: smaller;">y</sup></div>
+                            <div class="number-div number">7</div>
+                            <div class="number-div number">8</div>
+                            <div class="number-div number">9</div>
+                            <div class="operator-div operation" data-customdata="multiply">&#215;</div>
+                        </div>
+
+                        <div class="row-wrapper">
+                            <div class="number-div operation" data-customdata="ten-powe-x">10<sup style="font-size: smaller;">x</sup></div>
+                            <div class="number-div number">4</div>
+                            <div class="number-div number">5</div>
+                            <div class="number-div number">6</div>
+                            <div class="operator-div operation" data-customdata="subtract">-</div>
+                        </div>
+
+                        <div class="row-wrapper">
+                            <div class="operator-div operation" data-customdata="log">log</div>
+                            <div class="number-div number">1</div>
+                            <div class="number-div number">2</div>
+                            <div class="number-div number">3</div>
+                            <div class="operator-div operation" data-customdata="add">+</div>
+                        </div>
+
+                        <div class="row-wrapper">
+                            <div class="operator-div operation">ln</div>
+                            <div class="operator-div operation">+/-</div>
+                            <div class="number-div number">0</div>
+                            <div class="operator-div operation">.</div>
+                            <div class="operator-div operation" data-customdata="equals">=</div>
                         </div>
                         
                         
