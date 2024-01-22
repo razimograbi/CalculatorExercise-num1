@@ -42,6 +42,7 @@ const handleClickOnOperation = (e) => {
 
         case 'c':
             expression = '';
+            lastNumberInserted = '';
             break;
 
         case 'multiply':
@@ -51,6 +52,9 @@ const handleClickOnOperation = (e) => {
         case 'remove':
             if(expression.length === 0){
                 return;
+            }
+            if(!isNaN(expression[expression.length - 1] || expression[expression.length - 1] === '.')){
+                lastNumberInserted = lastNumberInserted.slice(0, lastNumberInserted.length - 1);
             }
             expression = expression.slice(0, expression.length - 1);
             break;
@@ -75,7 +79,31 @@ const handleClickOnOperation = (e) => {
 
         case 'power2':
             expression = expression.slice(0, index + 1) + `Math.pow(${expression.slice(index + 1)}, 2)`;
+            break;
 
+        case 'factorial':
+            function fac(n){
+                return(n<2 || isNaN(n))?1:fac(n-1)*n;
+            }
+            const fac_result = fac(Number(expression.slice(index + 1))).toString();
+            expression = expression.slice(0, index + 1) + fac_result;
+            lastNumberInserted = fac_result;
+            break;
+        
+        case 'one-over':
+            expression = expression.slice(0, index + 1) + (1 / Number(expression.slice(index + 1))).toString();
+            lastNumberInserted = (1 / Number(expression.slice(index + 1))).toString()
+            break;
+
+        case 'log':
+            expression = expression.slice(0, index + 1) + `Math.log(${expression.slice(index + 1)})`;
+            lastNumberInserted = `Math.log(${expression.slice(index + 1)})`;
+            break;
+
+        case 'dot':
+            expression = expression + ".";
+            lastNumberInserted = lastNumberInserted + '.';
+            break;
         default:
             break;
     }
