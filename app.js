@@ -1,16 +1,20 @@
 let expression = "";
+let lastNumberInserted = '';
 const displayElement = document.getElementById('result-display');
 
 const handleClickOnNumber = (e) =>{
     const number = e.target.textContent;
     expression = expression + number;
+    lastNumberInserted = lastNumberInserted + number;
     displayElement.innerHTML = expression;
 };
 
 
 
 const handleClickOnOperation = (e) => {
-    const operation = e.target.dataset.customdata; // Assuming custom data attribute contains the operation
+
+    let index  = expression.length - lastNumberInserted.length - 1;
+    lastNumberInserted = '';
 
     if(['+', '-'].includes(e.target.innerHTML)){
         expression = expression + e.target.innerHTML;
@@ -18,12 +22,7 @@ const handleClickOnOperation = (e) => {
         return;
     }
 
-    let index  = expression.length - 1;
-    for(index = expression.length - 1; index >= 0 ; index--){
-        if(isNaN(Number(expression[index]))){
-            break;
-        }
-    }
+    const operation = e.target.dataset.customdata;
 
     switch (operation) {
         case 'equals':
@@ -58,10 +57,12 @@ const handleClickOnOperation = (e) => {
         
         case 'e':
             expression = expression + 'Math.E';
+            lastNumberInserted = 'Math.E';
             break;
         
         case 'pi':
             expression = expression + 'Math.PI';
+            lastNumberInserted = 'Math.PI';
             break;
         
         case 'arr1':
@@ -88,9 +89,11 @@ const handleEquals = () => {
         const result = eval(expression);
         displayElement.innerHTML = result;
         expression = result.toString();
+        lastNumberInserted = result.toString(); 
     } catch (error) {
         displayElement.innerHTML = 'Error';
         expression = '0'; //reset expression
+        lastNumberInserted = '0';
     }
 };
 
